@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!-- Layout for Movie Poster list item -->
-<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/moviePoster"
-    android:layout_width="match_parent"
-    android:padding="2dp"
-    android:layout_height="300dp"
-    android:orientation="vertical"
-    tools:src="@tools:sample/backgrounds/scenic"
-    android:adjustViewBounds="true"
-    android:scaleType="centerCrop" />
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="results"
+            type="com.example.moviesapp.network.Results" />
+    </data>
+
+    <ImageView
+        android:id="@+id/moviePoster"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:adjustViewBounds="true"
+        android:orientation="vertical"
+        android:padding="2dp"
+        android:scaleType="fitXY"
+        app:imageUrl="@{results.posterPath}"
+        tools:src="@tools:sample/backgrounds/scenic" />
+</layout>
