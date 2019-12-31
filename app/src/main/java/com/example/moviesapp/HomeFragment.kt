@@ -2,10 +2,9 @@ package com.example.moviesapp
 
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 import com.example.moviesapp.databinding.FragmentHomeBinding
 
@@ -29,9 +28,26 @@ class HomeFragment : Fragment() {
 
         binding.setLifecycleOwner(this)
         binding.viewModel=viewModel
+        binding.recyclerView.adapter = MovieAdapter(MovieAdapter.OnClickListener {
+            Toast.makeText(context,"Test",Toast.LENGTH_LONG).show()
+        })
+
+        setHasOptionsMenu(true)
 
         return binding.root
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main_menu,menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId)
+        {
+            R.id.topRated -> viewModel.getTopRatedMoviesResponse()
+            R.id.mostPopular -> viewModel.getPopularMoviesResponse()
+        }
+        return true
+    }
 
 }

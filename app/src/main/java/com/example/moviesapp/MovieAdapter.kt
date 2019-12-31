@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.moviesapp.databinding.MovieListItemBinding
 import com.example.moviesapp.network.Results
 
-class MovieAdapter() : ListAdapter<Results, MovieAdapter.MovieViewHolder>(DiffCallback) {
+class MovieAdapter(val onClickListener: OnClickListener) : ListAdapter<Results, MovieAdapter.MovieViewHolder>(DiffCallback) {
 
     companion object DiffCallback : DiffUtil.ItemCallback<Results>() {
         override fun areItemsTheSame(oldItem: Results, newItem: Results): Boolean {
@@ -37,7 +37,18 @@ class MovieAdapter() : ListAdapter<Results, MovieAdapter.MovieViewHolder>(DiffCa
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val results = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(results)
+        }
         holder.bind(results)
 
+    }
+    /**
+     * Custom listener that handles clicks on [RecyclerView] items.  Passes the [Results]
+     * associated with the current item to the [onClick] function.
+     * @param clickListener lambda that will be called with the current [Results]
+     */
+    class OnClickListener(val clickListener: (results:Results)->Unit){
+        fun onClick(results: Results) = clickListener(results)
     }
 }

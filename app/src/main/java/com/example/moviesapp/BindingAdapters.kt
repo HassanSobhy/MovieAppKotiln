@@ -12,8 +12,8 @@ import com.example.moviesapp.network.Results
 
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<Results>?) {
-    val adapter = MovieAdapter()
-    recyclerView.adapter = adapter
+
+    val adapter = recyclerView.adapter as MovieAdapter
     adapter.submitList(data)
 }
 
