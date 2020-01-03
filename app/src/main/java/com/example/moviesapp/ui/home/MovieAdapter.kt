@@ -1,4 +1,4 @@
-package com.example.moviesapp
+package com.example.moviesapp.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.moviesapp.databinding.MovieListItemBinding
 import com.example.moviesapp.network.Results
 
-class MovieAdapter(val onClickListener: OnClickListener) : ListAdapter<Results, MovieAdapter.MovieViewHolder>(DiffCallback) {
+class MovieAdapter(val onClickListener: OnClickListener) : ListAdapter<Results, MovieAdapter.MovieViewHolder>(
+    DiffCallback
+) {
 
     companion object DiffCallback : DiffUtil.ItemCallback<Results>() {
         override fun areItemsTheSame(oldItem: Results, newItem: Results): Boolean {
@@ -32,7 +34,9 @@ class MovieAdapter(val onClickListener: OnClickListener) : ListAdapter<Results, 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        return MovieViewHolder(MovieListItemBinding.inflate(LayoutInflater.from(parent.context)))
+        return MovieViewHolder(
+            MovieListItemBinding.inflate(LayoutInflater.from(parent.context))
+        )
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {

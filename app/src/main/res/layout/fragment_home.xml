@@ -7,13 +7,14 @@
 
         <variable
             name="viewModel"
-            type="com.example.moviesapp.HomeViewModel" />
+            type="com.example.moviesapp.ui.home.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="@android:color/white"
         android:layout_height="match_parent"
-        tools:context=".HomeFragment">
+        tools:context=".ui.home.HomeFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

@@ -1,4 +1,4 @@
-package com.example.moviesapp
+package com.example.moviesapp.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -25,8 +25,21 @@ class HomeViewModel : ViewModel() {
     private var coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
 
+    private val _navigateToSelectedMovie = MutableLiveData<Results>()
+
+    val navigateToSelectedMovie: LiveData<Results>
+        get() = _navigateToSelectedMovie
+
     init {
         getPopularMoviesResponse()
+    }
+
+    fun displayMovieDetails(results: Results) {
+        _navigateToSelectedMovie.value = results
+    }
+
+    fun displayMovieDetailsComplete() {
+        _navigateToSelectedMovie.value = null
     }
 
     fun getPopularMoviesResponse() {
